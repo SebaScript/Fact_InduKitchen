@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,44 +10,74 @@
         <header>
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
-                    <!-- Contenedor para el logo y el nombre -->
+                        <!-- Contenedor para el logo y el nombre -->
                     <div class="left-container">
-                        <a class="navbar-item" href="#">
-                            <img src="img/InduKitchenlogo.png">
-                            <h1>Facturación InduKitchen</h1>
-                        </a>
+                        <img src="img/LogoInduBilling.png">
+                        <h1>Indu-Billing</h1>
                     </div>
-    
-                    <!-- Contenedor para los botones -->
+                    <div class="middle-container">
+                        <h1> Panel principal</h1>
+                    </div>
                     <div class="right-container">
-                        <div class="dropdown is-hoverable">
-                            <div class="dropdown-trigger">
-                              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                <span>Menú</span>
-                                <span class="icon is-small">
-                                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                </span>
-                              </button>
-                            </div>
-                            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                                <div class="dropdown-content">
-                                    <a href="#" class="dropdown-item"> Overview </a>
-                                    <a href="#" class="dropdown-item"> Modifiers </a>
-                                    <a href="#" class="dropdown-item"> Grid </a>
-                                    <a href="#" class="dropdown-item"> Form </a>
-                                    <a href="#" class="dropdown-item"> Elements </a>
-                                    <a href="#" class="dropdown-item"> Components </a>
-                                    <a href="#" class="dropdown-item"> Layout </a>
-                                    <hr class="dropdown-divider" />
-                                    <a href="#" class="dropdown-item"> More </a>
-                                  </div>
-                            </div>
-                          </div>
+                        <a href="generar_factura.html">
+                            <button class="button">Generar factura</button>
+                        </a>
+                        <a href="#">
+                            <button class="button is-danger" disabled>Buscar factura</button>
+                        </a>
                     </div>
                 </div>
             </nav>
         </header>
+        <main class="main-content">
+            <div class="crud-container">
+                <div class="crud-header">
+                    <h1>Lista de facturas</h1>  
+                </div>
+                <table id="articleTable" class="table">
+                    <thead>
+                        <th>Código</th>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Valor total</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>0001</th>
+                        <td>2024-04-20</td>
+                        <td>10278942812</td>
+                        <td>450000</td>
+                    </tr>
+                    <tr>
+                        <th>0002</th>
+                        <td>2024-02-18</td>
+                        <td>12378942811</td>
+                        <td>999000</td>
+                    </tr>
+                    <tr>
+                        <th>0003</th>
+                        <td>2023-12-24</td>
+                        <td>12341243212</td>
+                        <td>980000</td>
+                    </tr>
+                    <tr>
+                        <th>0004</th>
+                        <td>2023-01-04</td>
+                        <td>12341241231</td>
+                        <td>127999</td>
+                    </tr>
+                    <tr>
+                        <th>0005</th>
+                        <td>1876-02-18</td>
+                        <td>12121432231</td>
+                        <td>1000000</td>
+                    </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </main>
+        <div id="ologo">
+            <img src="img/logoOsakaG.png" alt="">
+        </div>
     </body>
-    <script>
-    </script>
 </html>

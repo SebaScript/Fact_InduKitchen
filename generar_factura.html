@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar factura</title>
+    <link rel="stylesheet" href="styles/generar_factura.css">
+    <script type="module" src="generar-factura.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                    <!-- Contenedor para el logo y el nombre -->
+                <div class="left-container">
+                    <img src="img/LogoInduBilling.png">
+                    <h1>Indu-Billing</h1>
+                </div>
+                <div class="middle-container">
+                    <h1>Generar factura</h1>
+                </div>
+                <div class="right-container">
+                    <a href="principal_empresa.html">
+                        <button class="button">Panel principal</button>
+                    </a>
+                    <a href="#">
+                        <button class="button is-danger" disabled>Buscar factura</button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content">
+        <div class="nuevo-item">
+            <div class="info-cliente">
+                <div class="input-container">
+                    <label for="id-cliente">Documento</label>
+                    <input class="input is-normal" type="text" name="id-cliente"  placeholder="Ingrese el documento del cliente">
+                </div>
+            </div>
+            <div class="item-wrapper">
+                <div class="item">
+                    <div id="datos-item">
+                        <div class="input-container">
+                            <label for="cod-producto">Código producto</label>
+                            <input class="input is-normal" type="text" name="cod-producto"  placeholder="Cód.">
+                        </div>
+                        <div class="input-container">
+                            <label for="precio">Precio</label>
+                            <input class="input is-normal" type="text" name="precio"  placeholder="$COP">
+                        </div>
+                        <div class="input-container">
+                            <label for="cantidad">Cantidad</label>
+                            <input class="input is-normal" type="text" name="cantidad"  placeholder="# Productos">
+                        </div>
+                        <div class="input-container">
+                            <label for="id-cliente">Descuento</label>
+                            <input class="input is-normal" type="text" name="descuento"  placeholder="% Descuento">
+                        </div>
+                    </div>
+                    <div id="lista-items">
+                        <table id="articleTable" class="table">
+                            <thead>
+                                <th>Código producto</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Descuento (%)</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>0001</th>
+                                <td>2500000</td>
+                                <td>2</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <th>0002</th>
+                                <td>1000000</td>
+                                <td>1</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <th>0003</th>
+                                <td>124000000</td>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <th>0004</th>
+                                <td>546400</td>
+                                <td>1</td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <th>0005</th>
+                                <td>11240000</td>
+                                <td>1</td>
+                                <td>10</td>
+                            </tr>   
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="total">
+                    <div class="button-wrapper">
+                        <button class="button is-success">Agregar</button>
+                        <button class="button is-success">Limpiar</button>
+                    </div>
+                    <p>Subtotal: <span id="subtotal"></span></p>
+                    <p>IVA: <span id="iva"></span></p>
+                    <p>Descuento: <span id="descuento"></span></p>
+                    <button class="button is-success">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id="ologo">
+        <img src="img/logoOsakaG.png" alt="">
+    </div>
+</body>
+</html>
