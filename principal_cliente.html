@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html data-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Página principal</title>
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="icon" type="image/x-icon" href="img/LogoInduBilling.png">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                        <!-- Contenedor para el logo y el nombre -->
+                    <div class="left-container">
+                        <img src="img/LogoInduBilling.png">
+                        <h1>Indu-Billing</h1>
+                    </div>
+                    <div class="middle-container">
+                        <h1> Panel principal</h1>
+                    </div>
+                    <div class="right-container">
+                        <a href="#">
+                            <button class="button is-danger" disabled>Buscar factura</button>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main class="main-content">
+            <div class="crud-container">
+                <div class="crud-header">
+                    <h1>Lista de facturas</h1>  
+                </div>
+                <table id="articleTable" class="table">
+                    <thead>
+                        <th>Código</th>
+                        <th>Fecha</th>
+                        <th>Valor total</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>0001</th>
+                        <td>2024-04-20</td>
+                        <td>450000</td>
+                    </tr>
+                    <tr>
+                        <th>0002</th>
+                        <td>2024-02-18</td>
+                        <td>999000</td>
+                    </tr>
+                    <tr>
+                        <th>0003</th>
+                        <td>2023-12-24</td>
+                        <td>980000</td>
+                    </tr>
+                    <tr>
+                        <th>0004</th>
+                        <td>2023-01-04</td>
+                        <td>127999</td>
+                    </tr>
+                    <tr>
+                        <th>0005</th>
+                        <td>1876-02-18</td>
+                        <td>1000000</td>
+                    </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </main>
+        <div id="ologo">
+            <img src="img/logoOsakaG.png" alt="">
+        </div>
+    </body>
+</html>

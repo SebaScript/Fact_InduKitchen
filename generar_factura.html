@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generar factura</title>
     <link rel="stylesheet" href="styles/generar_factura.css">
+    <link rel="icon" type="image/x-icon" href="img/LogoInduBilling.png">
     <script type="module" src="generar-factura.js"></script>
 </head>
 <body>
@@ -103,7 +104,7 @@
                 </div>
                 <div class="total">
                     <div class="button-wrapper">
-                        <button class="button is-success">Agregar</button>
+                        <button id="agg-prod" class="button is-success">Agregar</button>
                         <button class="button is-success">Limpiar</button>
                     </div>
                     <p>Subtotal: <span id="subtotal"></span></p>
@@ -118,4 +119,114 @@
         <img src="img/logoOsakaG.png" alt="">
     </div>
 </body>
+<script type="module">
+
+    const boton_agg_prod = document.getElementById("agg-prod")
+    const span_subtotal = document.getElementById('subtotal')
+    const span_iva = document.getElementById('iva')
+    const span_descuento = document.getElementById('descuento')
+    const table = document.getElementById('articleTable')
+
+    function agregarFila(codigo, precio, cantidad, descuento) {
+        // Crear un nuevo elemento tr
+        const newRow = document.createElement('tr');
+
+        // Crear y agregar nuevos td con la información proporcionada
+        const codProdCell = document.createElement('th');
+        codProdCell.textContent = codigo;
+        newRow.appendChild(codProdCell);
+
+        const precioCell = document.createElement('td');
+        precioCell.textContent = precio;
+        newRow.appendChild(precioCell);
+
+        const cantidadCell = document.createElement('td');
+        cantidadCell.textContent = cantidad;
+        newRow.appendChild(cantidadCell);
+
+        const descuentoCell = document.createElement('td');
+        descuentoCell.textContent = descuento;
+        newRow.appendChild(descuentoCell);
+
+        // Agregar la nueva fila a la tabla
+        table.querySelector('tbody').appendChild(newRow);
+    }
+
+    boton_agg_prod.addEventListener('click', () => {
+        var n_cod_prod = document.getElementsByName('cod-producto')[0].value;
+        var n_precio = document.getElementsByName('precio')[0].value;
+        var n_cantidad = document.getElementsByName('cantidad')[0].value;
+        var n_descuento = document.getElementsByName('descuento')[0].value;
+
+        agregarFila(n_cod_prod, n_precio, n_cantidad, n_cantidad);
+
+        let subtotal = calcularSubTotal();
+        let iva = calcularIVA(subtotal)
+        let descuento = calcularDescuentoTotal()
+        span_subtotal.textContent = subtotal
+        span_iva.textContent = iva
+        span_descuento.textContent = descuento
+    })
+
+    // Función para calcular el total de la tabla
+    function calcularSubTotal() {
+        let total = 0;
+
+        // Obtener todas las filas de la tabla
+        const rows = table.querySelectorAll('tbody tr');
+
+        // Iterar sobre cada fila y calcular el subtotal
+        rows.forEach(row => {
+            // Obtener el precio y la cantidad de la fila actual
+            const precio = parseFloat(row.cells[1].textContent); // Índice 1 es la columna de precio
+            const cantidad = parseInt(row.cells[2].textContent); // Índice 2 es la columna de cantidad
+
+            // Calcular el subtotal de esta fila (precio * cantidad)
+            const subtotal = precio * cantidad;
+
+            // Sumar el subtotal al total
+            total += subtotal;
+        });
+
+        return total;
+    }
+
+    function calcularIVA(total) {
+        const porcentajeIVA = 0.19; // Porcentaje del IVA (19%)
+        const valorIVA = total * porcentajeIVA;
+        return valorIVA;
+    }
+
+    // Función para calcular el valor del descuento por fila
+    function calcularDescuentoPorFila(precio, cantidad, descuento) {
+        const subtotal = precio * cantidad;
+        const valorDescuento = subtotal * (descuento / 100);
+        return valorDescuento;
+    }
+
+    // Función para calcular el valor total del descuento en la tabla
+    function calcularDescuentoTotal() {
+        let descuentoTotal = 0;
+
+        // Obtener todas las filas de la tabla
+        const rows = table.querySelectorAll('tbody tr');
+
+        // Iterar sobre cada fila y calcular el descuento
+        rows.forEach(row => {
+            // Obtener el precio, cantidad y descuento de la fila actual
+            const precio = parseFloat(row.cells[1].textContent); // Índice 1 es la columna de precio
+            const cantidad = parseInt(row.cells[2].textContent); // Índice 2 es la columna de cantidad
+            const descuento = parseFloat(row.cells[3].textContent); // Índice 3 es la columna de descuento
+
+            // Calcular el valor del descuento para esta fila
+            const valorDescuentoPorFila = calcularDescuentoPorFila(precio, cantidad, descuento);
+
+            // Sumar el descuento al total
+            descuentoTotal += valorDescuentoPorFila;
+        });
+
+        return descuentoTotal;
+    }
+
+</script>
 </html>
