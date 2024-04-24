@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
-import { getDatabase, ref, set, onValue, remove, query, orderByChild, equalTo, get } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+import { getDatabase, ref, set, onValue, remove, query, orderByChild, equalTo, get, runTransaction } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,7 +21,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase()
-const factRef = ref(db, 'factura');
+const counterRef = ref(db, 'counter');
 
 const boton_agg_prod = document.getElementById("agg-prod")
 const boton_limpiar_tabla = document.getElementById("limpiar")
@@ -30,7 +30,13 @@ const boton_crear_factura = document.getElementById("crear-fact")
 const span_subtotal = document.getElementById('subtotal')
 const span_iva = document.getElementById('iva')
 const span_descuento = document.getElementById('descuento')
+const span_total = document.getElementById('total')
 const table = document.getElementById('articleTable')
+
+///////////////////////////////////////////////////////////////////////
+
+// Obtén todas las filas de la tabla
+
 
 function agregarFila(codigo, precio, cantidad, descuento) {
     // Crear un nuevo elemento tr
@@ -66,12 +72,18 @@ boton_agg_prod.addEventListener('click', () => {
     agregarFila(n_cod_prod, n_precio, n_cantidad, n_descuento);
 
     let subtotal = calcularSubTotal();
-    let iva = calcularIVA(subtotal)
-    let descuento = calcularDescuentoTotal()
     span_subtotal.textContent = subtotal
+    let iva = calcularIVA(subtotal)
     span_iva.textContent = iva
+    let descuento = calcularDescuentoTotal()
     span_descuento.textContent = descuento
+    let total = calcularTotal()
+    span_total.textContent = total
 
+    document.getElementsByName("cod-producto")[0].value = ""
+    document.getElementsByName("precio")[0].value = ""
+    document.getElementsByName("cantidad")[0].value = ""
+    document.getElementsByName("descuento")[0].value = ""
 })
 
 // Función para calcular el total de la tabla
@@ -110,6 +122,11 @@ function calcularDescuentoPorFila(precio, cantidad, descuento) {
     return valorDescuento;
 }
 
+function calcularTotal() {
+    let total = parseFloat(document.getElementById("subtotal").textContent) + parseFloat(document.getElementById("iva").textContent) - parseFloat(document.getElementById("descuento").textContent)
+    return total
+}
+
 // Función para calcular el valor total del descuento en la tabla
 function calcularDescuentoTotal() {
     let descuentoTotal = 0;
@@ -142,5 +159,57 @@ boton_limpiar_tabla.addEventListener('click', () => {
     tbody.innerHTML = '';
 })
 
-boton_crear_factura.addEventListener('click', () => {
-})
+boton_crear_factura.addEventListener('click', () => { 
+
+    let rows = document.querySelectorAll('table tr');
+
+    let products = [];
+    
+    // Itera sobre las filas de la tabla
+    for (let i = 1; i < rows.length; i++) {
+      let product = {};
+    
+      // Obtén las celdas de la fila
+      let p_code = rows[i].querySelector('th')
+      let cells = rows[i].querySelectorAll('td');
+    
+      // Asigna los valores a las propiedades del producto
+      product.codigo = p_code.textContent;
+      product.precio = cells[0].textContent;
+      product.cantidad = cells[1].textContent;
+      product.descuento = cells[2].textContent;
+    
+      // Agrega el producto a la lista de productos
+      products.push(product);
+    }
+
+    const doc_cliente = document.getElementsByName("id-cliente")[0].value
+    const subtotal = parseFloat(document.getElementById("subtotal").textContent)
+    const IVA_total = parseFloat(document.getElementById("iva").textContent)
+    const descuento_total = parseFloat(document.getElementById("descuento").textContent)
+    const total = parseFloat(document.getElementById("total").textContent)
+    let fecha = new Date()
+    let fecha_formateada = fecha.getFullYear() + '-' + (fecha.getMonth() + 1) + '-' + fecha.getDate() + ' ' + fecha.getHours() + ':' + fecha.getMinutes() + ':' + fecha.getSeconds();
+
+    runTransaction(counterRef, (currentData) => {
+        if (currentData === null) {
+          return 1;
+        } else {
+          return currentData + 1;
+        }
+      }).then(({ committed, snapshot }) => {
+        if (committed) {
+          // Ahora puedes usar 'snapshot.val()' como el ID para tu nueva factura
+          const newInvoiceId = snapshot.val();
+          const factRef = ref(db, 'facturas/' + newInvoiceId);
+          set(factRef, {
+            cliente: doc_cliente,
+            fecha: fecha_formateada,
+            subtotal: subtotal,
+            IVA: IVA_total,
+            descuento: descuento_total,
+            total: total,
+            productos: products
+        })
+    }});  
+});

@@ -21,8 +21,54 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase()
-const factRef = ref(db, 'factura');
+const factRef = ref(db, 'facturas');
 
-const factura_elegida = document.getE
+onValue(factRef, (snapshot) => {
+  if (snapshot.exists()) {
+    const invoices = snapshot.val();
 
-factura_elegida.addE
+    // Obtén la tabla
+    let table = document.getElementById('articleTable');
+
+    // Itera sobre las facturas
+    for (let invoiceId in invoices) {
+      let invoice = invoices[invoiceId];
+      console.log(invoice)
+
+      // Crea una nueva fila
+      let row = document.createElement('tr');
+      row.classList.add("fact")
+
+      // Crea las celdas
+      let codeCell = document.createElement('th');
+      let dateCell = document.createElement('td');
+      let customerCell = document.createElement('td');
+      let totalValueCell = document.createElement('td');
+
+      // Asigna los valores a las celdas
+      codeCell.innerText = invoiceId;
+      dateCell.innerText = invoice.fecha;
+      customerCell.innerText = invoice.cliente;
+      totalValueCell.innerText = invoice.total;
+
+      // Agrega las celdas a la fila
+      row.appendChild(codeCell);
+      row.appendChild(dateCell);
+      row.appendChild(customerCell);
+      row.appendChild(totalValueCell);
+
+      // Agrega la fila a la tabla
+      table.appendChild(row);
+    }
+  } else {
+    console.log("No data available");
+  }
+});
+
+
+const facturas = document.querySelectorAll(".fact")
+facturas.forEach(function(factura_elegida) {
+  factura_elegida.addEventListener('click', () => {
+    window.open("ver_factura.html?id="+encodeURIComponent(factura_elegida.querySelector("th").textContent))
+    })
+})

@@ -94,22 +94,31 @@
 }
 
 
-table :hover {
+tbody :hover {
     transition: 320ms;
-    background-color: rgba(0, 255, 255, 0.057);
+    background-color: rgba(0, 255, 255, 0.057)
+};
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+}
+
+#ologo {
+    width: 100px;
+    display: flex;
+    justify-self: center;
+    gap: 10px
 }
 
 #ologo img{
-    width: 44px;
+    width: 50%;
     border-radius: 100%;
     justify-self: flex-end;
     margin-right: 16px;
     opacity: 20%;
 }
 
-#ologo {
-    display: flex;
-    position: sticky;
-    justify-content: flex-end;
 
-}
