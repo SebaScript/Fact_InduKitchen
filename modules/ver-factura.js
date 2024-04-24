@@ -21,38 +21,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase()
-
-
-class Producto {
-    constructor(codigo, valorUnitario, cantidad) {
-        this.codigo = codigo;
-        this.valorUnitario = valorUnitario;
-        this.cantidad = cantidad;
-    }
-
-    calcularSubtotal() {
-        return this.valorUnitario * this.cantidad;
-    }
-}
-
-class Factura {
-    constructor(codigo, identificacionCliente, valorTotal, valorIVA, valorDescuento, fechaExpedicion) {
-        this.codigo = codigo;
-        this.identificacionCliente = identificacionCliente;
-        this.valorTotal = valorTotal;
-        this.valorIVA = valorIVA;
-        this.valorDescuento = valorDescuento;
-        this.fechaExpedicion = fechaExpedicion;
-        this.productos = [];
-    }
-
-    agregarProducto(producto) {
-        this.productos.push(producto);
-    }
-
-    calcularTotal() {
-        let subtotal = this.productos.reduce((acc, producto) => acc + producto.calcularSubtotal(), 0);
-        let total = subtotal + this.valorIVA - this.valorDescuento;
-        return total;
-    }
-}
+const factRef = ref(db, 'factura');

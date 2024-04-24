@@ -2,7 +2,6 @@
 
 .navbar{
     background-color: #003049;
-    padding-top: 0.5rem;
     justify-content: center;
     font-weight: 500;
 }
@@ -16,13 +15,13 @@
     justify-content: space-between; /* Separa los dos contenedores principales */
     align-items: center; /* Alinea verticalmente los elementos en el centro */
     width: 100%;
-    height: 8vh;
+    height: 10vh;
 }
 
 /* Estilo para el contenedor izquierdo (logo y nombre) */
 .left-container {
     width:33%;
-    height: 68px;
+    height: 100%;
     display: flex;
     gap:8px;
     align-items: center;
@@ -35,7 +34,7 @@
 }
 
 .left-container > img{
-    height: 68px
+    height: 100%
 }
 
 .middle-container {
@@ -64,7 +63,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height:84vh;
+    height:80vh;
 }
 
 .nuevo-item {

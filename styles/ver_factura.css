@@ -54,7 +54,7 @@
     color: white;
 }
 
-.main-content{
+main{
     padding: 4rem;
     display: flex;
     justify-content: center;
@@ -62,42 +62,13 @@
     min-height: 80vh;
 }
 
-.crud-container{
-    width: 80%;
-    border: 1px solid black;
-    padding: 2rem 2rem;
+.fact-container {
+    width: 21.59cm;
+    height: 27.94cm;
     overflow: auto;
     box-shadow: 0 0 1rem 0 rgba(0,0,0,0.3);
-    border-radius: 0.5rem;
 }
 
-.crud-container h1{
-    font-weight: bold;
-    font-size: 24px;
-    color: rgb(0, 0, 0);
-}
-
-.crud-header{
-    display: flex;
-    justify-content: space-between;
-    padding: 0 2rem 1rem 2rem;
-    border-bottom: 1px solid black;
-}
-
-.crud-container table{
-    font-size:large;
-    width: 100%;
-}
-
-.crud-container button{
-    margin: 2px;
-}
-
-
-table :hover {
-    transition: 320ms;
-    background-color: rgba(0, 255, 255, 0.057);
-}
 
 #ologo img{
     width: 44px;
