@@ -55,7 +55,7 @@
 }
 
 main{
-    padding: 4rem;
+    padding: 2rem;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -63,24 +63,120 @@ main{
 }
 
 .fact-container {
-    width: 21.59cm;
-    height: 27.94cm;
+    width: 27.94cm;
+    height: 21.59cm;
     overflow: auto;
     box-shadow: 0 0 1rem 0 rgba(0,0,0,0.3);
 }
 
-
-#ologo img{
-    width: 44px;
-    border-radius: 100%;
-    justify-self: flex-end;
-    margin-right: 16px;
-    opacity: 20%;
+#wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 32px;
 }
 
-#ologo {
+.logo {
+    width: 100%;
+    height: fit-content;
     display: flex;
-    position: sticky;
-    justify-content: flex-end;
+    justify-content: center;
+}
 
+.datos-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+    border-bottom: 1px solid black;
+}
+
+.datos-factura {
+    margin-top: 40px;
+    padding-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.TOTAL {
+    font-size: larger;
+}
+
+#total {
+    font-size: larger;
+}
+
+.total {
+    margin-top: 40px;
+    padding-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.total p {
+    font-weight: bolder;
+    width: 150px;
+}
+
+.total span {
+    width: 150px;
+}
+
+.datos-factura p {
+    font-weight: bolder;
+    width: 150px;
+}
+
+.datos-factura span {
+    width: 150px;
+}
+
+.xdwrapper {
+    display: flex;
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    gap: 50px
+}
+
+.crud-container{
+    width: 100%;
+    margin-top: 44px;
+    overflow: auto;
+    border-radius: 0.5rem;
+}
+
+.crud-container h1{
+    font-weight: bold;
+    font-size: 24px;
+    color: #003049;
+}
+
+.crud-container table{
+    font-size:large;
+    width: 100%;
+}
+
+
+footer {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+
+div#ologo {
+    display: flex;
+    width: auto;
+    height: 100px;
+    gap: 20px
+}
+
+#ologo img{
+    border-radius: 100%;
+    margin-right: 16px;
+    margin-bottom: 12px;
+    opacity: 25%;
 }

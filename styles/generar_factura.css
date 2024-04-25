@@ -174,5 +174,6 @@ div#ologo {
 #ologo img{
     border-radius: 100%;
     margin-right: 16px;
+    margin-bottom: 12px;
     opacity: 25%;
 }

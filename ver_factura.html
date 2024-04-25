@@ -30,16 +30,60 @@
                 </div>
             </div>
         </nav>
-        <main>
-            <div class="fact-container">
-
-            </div>
-        </main>
     </header>
-    <main class="main-content">
-    </main>
-    <div id="ologo">
-        <img src="img/logoOsakaG.png" alt="">
-    </div>
+        <main>
+            <main class="main-content">
+                <div class="fact-container">
+                    <div id="wrapper">
+                        <figure class="logo">
+                            <img src="img/InduKitchenlogo.png" alt="">
+                        </figure>
+                        <div class="datos-wrapper">
+                            <div class="datos-factura">
+                                <div class="xdwrapper">
+                                    <p>Código factura:</p><span id="cod-fact"></span>
+                                </div>
+                                <div class="xdwrapper">
+                                    <p>Fecha:</p><span id="fecha"></span>
+                                </div>
+                                <div class="xdwrapper">
+                                    <p>Emitida a:</p><span id="cliente"></span>
+                                </div>
+                            </div>
+                            <div class="total">
+                                <div class="xdwrapper">
+                                    <p>Total descuento:</p><span id="desc"></span>
+                                </div>
+                                <div class="xdwrapper">
+                                    <p>Total IVA(19%):</p><span id="iva"></span>
+                                </div>
+                                <div class="xdwrapper">
+                                    <p class="TOTAL">Total neto:</p><span id="total"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="crud-container">
+                            <table id="articleTable" class="table">
+                                    <thead>
+                                        <th>Cant.</th>
+                                        <th>Producto &nbsp&nbsp&nbsp</th>
+                                        <th>Valor unitario</th>
+                                        <th>Descuento(%)</th>
+                                        <th>Valor total</th>
+                                    </thead>
+                                <tbody>
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </main>
+        <footer>
+            <div id="ologo">
+                <img src="img/logoOsakaG.png" alt="">
+                <img src="img/InduKitchenlogo.png" alt="">
+            </div>
+        </footer>
 </body>
 </html>

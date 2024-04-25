@@ -71,10 +71,14 @@
     border-radius: 0.5rem;
 }
 
+.crud-container thead th {
+    color: #003049;
+}
+
 .crud-container h1{
     font-weight: bold;
     font-size: 24px;
-    color: rgb(0, 0, 0);
+    color: #003049;
 }
 
 .crud-header{
@@ -89,14 +93,11 @@
     width: 100%;
 }
 
-.crud-container button{
-    margin: 2px;
-}
 
-
-tbody :hover {
-    transition: 320ms;
-    background-color: rgba(0, 255, 255, 0.057)
+tr:not(:first-child):hover {
+    cursor: pointer;
+    transition: 300ms;
+    background-color: #002f491b
 };
 
 footer {
@@ -107,6 +108,8 @@ footer {
 
 div#ologo {
     display: flex;
+    display: flex;
+    flex-direction: row-reverse;
     width: auto;
     height: 100px;
     gap: 20px
@@ -115,5 +118,6 @@ div#ologo {
 #ologo img{
     border-radius: 100%;
     margin-right: 16px;
-    opacity: 25%;
+    margin-bottom: 12px;
+      opacity: 25%;
 }

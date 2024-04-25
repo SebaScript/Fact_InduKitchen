@@ -33,7 +33,6 @@ onValue(factRef, (snapshot) => {
     // Itera sobre las facturas
     for (let invoiceId in invoices) {
       let invoice = invoices[invoiceId];
-      console.log(invoice)
 
       // Crea una nueva fila
       let row = document.createElement('tr');
@@ -63,12 +62,16 @@ onValue(factRef, (snapshot) => {
   } else {
     console.log("No data available");
   }
+
+  get_tr()
 });
 
-
-const facturas = document.querySelectorAll(".fact")
-facturas.forEach(function(factura_elegida) {
+function get_tr() {
+  const facturas = document.querySelectorAll("tr")
+  facturas.forEach(function(factura_elegida) {
   factura_elegida.addEventListener('click', () => {
     window.open("ver_factura.html?id="+encodeURIComponent(factura_elegida.querySelector("th").textContent))
     })
 })
+}
+

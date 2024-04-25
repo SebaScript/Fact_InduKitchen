@@ -21,4 +21,76 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase()
-const factRef = ref(db, 'factura');
+
+
+let urlParams = new URLSearchParams(window.location.search);
+let invoiceCode = urlParams.get('id');
+
+document.getElementById("cod-fact").textContent = invoiceCode
+
+const factRef = ref(db, 'facturas/' + invoiceCode);
+
+// Obtén los datos de la factura
+get(factRef).then((snapshot) => {
+  if (snapshot.exists()) {
+    const invoice = snapshot.val();
+    const total = invoice.total
+    const span_total = document.getElementById("total")
+    span_total.textContent = total
+
+    const iva = invoice.IVA
+    const span_iva = document.getElementById("iva")
+    span_iva.textContent = iva
+
+    const fecha = invoice.fecha
+    const span_fecha = document.getElementById("fecha")
+    span_fecha.textContent = fecha
+
+    const cliente = invoice.cliente
+    const span_cliente = document.getElementById("cliente")
+    span_cliente.textContent = cliente
+
+    const descuento = invoice.descuento
+    const span_descuento = document.getElementById("desc")
+    span_descuento.textContent = descuento
+
+    const products = invoice.productos;
+
+    // Obtén la tabla
+    let table = document.getElementById('articleTable');
+
+    // Itera sobre los productos
+    for (let product of products) {
+      // Crea una nueva fila
+      let row = document.createElement('tr');
+
+      // Crea las celdas
+      let quantityCell = document.createElement('td');
+      let productCell = document.createElement('td');
+      let unitValueCell = document.createElement('td');
+      let discountCell = document.createElement('td');
+      let totalValueCell = document.createElement('td');
+
+      // Asigna los valores a las celdas
+      quantityCell.innerText = product.cantidad;
+      productCell.innerText = product.codigo;
+      unitValueCell.innerText = product.precio;
+      discountCell.innerText = product.descuento;
+      totalValueCell.innerText = (parseFloat(product.precio) * parseFloat(product.cantidad) * (100-parseFloat(product.descuento)))/100 ;
+
+      // Agrega las celdas a la fila
+      row.appendChild(quantityCell);
+      row.appendChild(productCell);
+      row.appendChild(unitValueCell);
+      row.appendChild(discountCell);
+      row.appendChild(totalValueCell);
+
+      // Agrega la fila a la tabla
+      table.appendChild(row);
+    }
+  } else {
+    console.log("No data available");
+  }
+}).catch((error) => {
+  console.error(error);
+});
