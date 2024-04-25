@@ -212,4 +212,8 @@ boton_crear_factura.addEventListener('click', () => {
             productos: products
         })
     }});  
+    document.getElementsByName("id-cliente")[0].value = ""
+    const tbody = table.querySelector('tbody');
+    tbody.innerHTML = '';
+    alert("Factura generada con exito")
 });

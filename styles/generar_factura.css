@@ -158,17 +158,21 @@ label {
     color:antiquewhite;
 }
 
-#ologo img{
-    width: 44px;
-    border-radius: 100%;
-    justify-self: flex-end;
-    margin-right: 16px;
-    opacity: 20%;
+footer {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
 }
 
-#ologo {
+div#ologo {
     display: flex;
-    position: sticky;
-    justify-content: flex-end;
+    width: auto;
+    height: 100px;
+    gap: 20px
+}
 
+#ologo img{
+    border-radius: 100%;
+    margin-right: 16px;
+    opacity: 25%;
 }

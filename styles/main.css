@@ -100,25 +100,20 @@ tbody :hover {
 };
 
 footer {
-    width: 100%;
     display: flex;
-    justify-content: center;
-    position: sticky;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
 }
 
-#ologo {
-    width: 100px;
+div#ologo {
     display: flex;
-    justify-self: center;
-    gap: 10px
+    width: auto;
+    height: 100px;
+    gap: 20px
 }
 
 #ologo img{
-    width: 50%;
     border-radius: 100%;
-    justify-self: flex-end;
     margin-right: 16px;
-    opacity: 20%;
+    opacity: 25%;
 }
-
-
