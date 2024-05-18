@@ -7,13 +7,13 @@
 }
 
 main{
-    padding: 2rem;
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
-    min-height: 80vh;
+    max-height: 100%;
 }
 
 .fact-container {
