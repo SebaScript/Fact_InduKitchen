@@ -118,7 +118,7 @@ async function convertirPaginaA_PDF() {
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
-        a.download = `pagina.pdf${codfact}`;
+        a.download = `factura${codfact}.pdf`;
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
