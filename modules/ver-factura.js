@@ -94,3 +94,39 @@ get(factRef).then((snapshot) => {
 }).catch((error) => {
   console.error(error);
 });
+
+function get_tr() {
+  const facturas = document.querySelectorAll("tr")
+  facturas.forEach(function(factura_elegida) {
+  factura_elegida.addEventListener('click', () => {
+    
+    })
+})
+}
+
+async function convertirPaginaA_PDF() {
+    const urlPagina = window.location.href
+    const apiUrl = `https://pdfmyurl.com/api?license=${'8LPoLWRJJRGe'}&url=${encodeURIComponent(urlPagina)}`;
+    
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'pagina.pdf';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error('Hubo un problema con la solicitud fetch:', error);
+    }
+}
+
+document.getElementById("exportarPDF").addEventListener("click", () => {
+   convertirPaginaA_PDF()
+})
