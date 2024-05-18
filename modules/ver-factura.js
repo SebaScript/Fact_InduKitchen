@@ -107,7 +107,7 @@ function get_tr() {
 async function convertirPaginaA_PDF() {
     const urlPagina = window.location.href
     const apiUrl = `https://pdfmyurl.com/api?license=${'8LPoLWRJJRGe'}&url=${encodeURIComponent(urlPagina)}`;
-    
+    const codfact = document.getElementById("cod-fact").textContent
     try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
@@ -118,7 +118,7 @@ async function convertirPaginaA_PDF() {
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
-        a.download = 'pagina.pdf';
+        a.download = `pagina.pdf${codfact}`;
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
