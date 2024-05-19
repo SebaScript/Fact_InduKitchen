@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Cliente</title>
-        <link rel="stylesheet" href="styles/main.css">
+        <title>Buscar facturas</title>
+        <link rel="stylesheet" href="styles/buscar_facturas.css">
         <link rel="icon" type="image/x-icon" href="img/LogoInduBilling.png">
-        <script type="module" src="modules/cliente.js"></script>
+        <script type="module" src="modules/buscar-facturas-admin.js"></script>
     </head>
     <body>
         <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -22,8 +22,9 @@
                         <p class="menu-label">Administración</p>
                         <ul class="menu-list">
                           <li>
-                            <ul>    
-                            <li><a id="buscar_fact">Buscar facturas</a></li>
+                            <ul>
+                                <li><a href="generar_factura.html">Generar factura</a></li>
+                                <li><a href="principal_empresa.html">Página principal</a></li>
                             </ul>
                           </li>
                           <li><a>Soporte técnico</a></li>
@@ -39,14 +40,29 @@
             </footer>
         </nav>
         <main class="main-content">
+            <form id="searchForm">
+                <label for="searchType">Buscar por:</label>
+                <select id="searchType">
+                    <option value="codigo">Código</option>
+                    <option value="cliente">Cliente</option>
+                    <option value="fecha">fecha</option>
+                    <option value="valor">valor total</option>
+                </select>
+                
+                <div>
+                  <input type="text" id="searchInput" placeholder="Ingresa tu búsqueda...">
+                  <button type="submit">Buscar</button>
+                </div>
+              </form>
             <div class="crud-container">
                 <div class="crud-header">
-                    <h1>Lista de facturas</h1>  
+                    <h1>Resultados de búsqueda</h1>  
                 </div>
                 <table id="articleTable" class="table">
                     <thead>
                         <th>Código</th>
                         <th>Fecha</th>
+                        <th>Cliente</th>
                         <th>Valor total</th>
                     </thead>
                     <tbody>

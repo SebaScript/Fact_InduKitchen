@@ -72,10 +72,12 @@ body {
 .main-content{
     padding: 4rem;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
     width: 82vw;
-    min-height: 80vh;
+    min-height: 100vh;
 }
 
 .crud-container{
@@ -109,7 +111,7 @@ body {
 }
 
 
-tr:not(:first-child):hover {
+tr:hover {
     cursor: pointer;
     transition: 300ms;
     background-color: #002f491b
@@ -138,4 +140,53 @@ div#ologo {
 
 #ologo #roundimg {
     border-radius: 100%;
+}
+
+#searchForm {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 500px;
+    margin: 1px auto;
+}
+
+#searchForm label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#searchForm select,
+#searchForm input,
+#searchForm button {
+    margin-top: 10px;
+}
+
+#searchForm select,
+#searchForm input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#searchForm select:focus,
+#searchForm input:focus {
+    border-color:#003049;
+}
+
+#searchForm button {
+    background-color:#003049;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#searchForm button:hover {
+    background-color: #0056b3;
 }

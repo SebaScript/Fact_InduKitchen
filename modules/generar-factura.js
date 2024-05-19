@@ -68,8 +68,10 @@ boton_agg_prod.addEventListener('click', () => {
     var n_precio = document.getElementsByName('precio')[0].value;
     var n_cantidad = document.getElementsByName('cantidad')[0].value;
     var n_descuento = document.getElementsByName('descuento')[0].value;
-
-    agregarFila(n_cod_prod, n_precio, n_cantidad, n_descuento);
+    if ((n_cod_prod == "" || n_precio == "" || n_cantidad == "" || n_descuento == "") ) {
+        alert("Debes llenar todos los campos")
+    } else {
+        agregarFila(n_cod_prod, n_precio, n_cantidad, n_descuento);}
 
     let subtotal = calcularSubTotal();
     span_subtotal.textContent = subtotal
@@ -184,36 +186,44 @@ boton_crear_factura.addEventListener('click', () => {
     }
 
     const doc_cliente = document.getElementsByName("id-cliente")[0].value
-    const subtotal = parseFloat(document.getElementById("subtotal").textContent)
-    const IVA_total = parseFloat(document.getElementById("iva").textContent)
-    const descuento_total = parseFloat(document.getElementById("descuento").textContent)
-    const total = parseFloat(document.getElementById("total").textContent)
-    let fecha = new Date()
-    let fecha_formateada = fecha.getFullYear() + '-' + (fecha.getMonth() + 1) + '-' + fecha.getDate() + ' ' + fecha.getHours() + ':' + fecha.getMinutes() + ':' + fecha.getSeconds();
 
-    runTransaction(counterRef, (currentData) => {
-        if (currentData === null) {
-          return 1;
-        } else {
-          return currentData + 1;
-        }
-      }).then(({ committed, snapshot }) => {
-        if (committed) {
-          // Ahora puedes usar 'snapshot.val()' como el ID para tu nueva factura
-          const newInvoiceId = snapshot.val();
-          const factRef = ref(db, 'facturas/' + newInvoiceId);
-          set(factRef, {
-            cliente: doc_cliente,
-            fecha: fecha_formateada,
-            subtotal: subtotal,
-            IVA: IVA_total,
-            descuento: descuento_total,
-            total: total,
-            productos: products
-        })
-    }});  
-    document.getElementsByName("id-cliente")[0].value = ""
-    const tbody = table.querySelector('tbody');
-    tbody.innerHTML = '';
-    alert("Factura generada con exito")
+    if (doc_cliente == ""){
+        alert("Ingresa el documento del cliente")
+    }
+    else
+        {
+        const subtotal = parseFloat(document.getElementById("subtotal").textContent)
+        const IVA_total = parseFloat(document.getElementById("iva").textContent)
+        const descuento_total = parseFloat(document.getElementById("descuento").textContent)
+        const total = parseFloat(document.getElementById("total").textContent)
+        let fecha = new Date()
+        let fecha_formateada = fecha.getFullYear() + '-' + (fecha.getMonth() + 1) + '-' + fecha.getDate() + ' ' + fecha.getHours() + ':' + fecha.getMinutes() + ':' + fecha.getSeconds();
+    
+        runTransaction(counterRef, (currentData) => {
+            if (currentData === null) {
+              return 1;
+            } else {
+              return currentData + 1;
+            }
+          }).then(({ committed, snapshot }) => {
+            if (committed) {
+              // Ahora puedes usar 'snapshot.val()' como el ID para tu nueva factura
+              const newInvoiceId = snapshot.val();
+              const factRef = ref(db, 'facturas/' + newInvoiceId);
+              set(factRef, {
+                cliente: doc_cliente,
+                fecha: fecha_formateada,
+                subtotal: subtotal,
+                IVA: IVA_total,
+                descuento: descuento_total,
+                total: total,
+                productos: products
+            })
+        }});  
+        document.getElementsByName("id-cliente")[0].value = ""
+        const tbody = table.querySelector('tbody');
+        tbody.innerHTML = '';
+        alert("Factura generada con exito")
+
+    }
 });

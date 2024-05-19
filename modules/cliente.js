@@ -76,3 +76,7 @@ function get_tr() {
     })
 })
 }
+
+document.getElementById("buscar_fact").addEventListener("click", () => {
+  window.location.href = "buscar_facturas.html?id="+customerId
+})

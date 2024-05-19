@@ -9,7 +9,6 @@
         <script type="module" src="modules/mostrar-facturas.js"></script>
     </head>
     <body>
-        <header>
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                         <!-- Contenedor para el logo y el nombre -->
@@ -17,20 +16,29 @@
                         <img src="img/LogoInduBilling.png">
                         <h1>Indu-Billing</h1>
                     </div>
-                    <div class="middle-container">
-                        <h1> Panel principal</h1>
-                    </div>
+
                     <div class="right-container">
-                        <a href="generar_factura.html">
-                            <button class="button">Generar factura</button>
-                        </a>
-                        <a href="#">
-                            <button class="button is-danger" disabled>Buscar factura</button>
-                        </a>
+                        <aside class="menu">
+                            <p class="menu-label">Administración</p>
+                            <ul class="menu-list">
+                              <li>
+                                <ul>
+                                <li><a href="generar_factura.html">Generar factura</a></li>
+                                <li><a href="buscar_facturas_admin.html">Buscar facturas</a></li>
+                                </ul>
+                              </li>
+                              <li><a>Soporte técnico</a></li>
+                            </ul>
+                        </aside>
                     </div>
                 </div>
+                <footer>
+                    <div id="ologo">
+                        <img id="roundimg" src="img/logoOsakaG.png" alt="">
+                        <img src="img/InduKitchenlogo.png" alt="">
+                    </div>
+                </footer>
             </nav>
-        </header>
         <main class="main-content">
             <div class="crud-container">
                 <div class="crud-header">
@@ -48,11 +56,9 @@
                   </table>
             </div>
         </main>
-        <footer>
-            <div id="ologo">
-                <img src="img/logoOsakaG.png" alt="">
-                <img src="img/InduKitchenlogo.png" alt="">
-            </div>
-        </footer>
     </body>
 </html>
+
+
+<div class="dropdown-content">
+  </div>
