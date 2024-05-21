@@ -68,15 +68,21 @@ body {
 
 .menu-list > li > ul > li > a:hover {
     background-color: #0143678a;
-}
+}   
 
+main > h1 {
+    font-size: 32px;
+    color: #003049;
+}
 .main-content{
-    padding: 4rem;
+    padding: 1.5rem;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 82vw;
-    min-height: 80vh;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
 }
 
 .crud-container{
@@ -109,13 +115,6 @@ body {
     width: 100%;
 }
 
-
-tr:not(:first-child):hover {
-    cursor: pointer;
-    transition: 300ms;
-    background-color: #002f491b
-};
-
 footer {
     display: flex;
     flex-direction: column;
@@ -144,14 +143,6 @@ div#ologo {
 .button {
     background-color: #EC1B24;
     color: white;
-}
-
-.main-content{
-    padding: 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height:80vh;
 }
 
 .nuevo-item {
@@ -187,7 +178,7 @@ label {
 #datos-item {
     display: flex;
     flex-direction: row;
-    gap: 20px
+    gap: 20px;
 }
 
 .input-container {
@@ -233,6 +224,10 @@ label {
 .total > p {
     color:#003049;
     font-weight: bolder;
+}
+
+.button-wrapper > button {
+    height: 100%;
 }
 
 .button-wrapper {

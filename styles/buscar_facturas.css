@@ -69,14 +69,19 @@ body {
     background-color: #0143678a;
 }
 
+main > h1 {
+    font-size: 32px;
+    color: #003049;
+
+}
+
 .main-content{
-    padding: 4rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    gap: 20px;
-    width: 82vw;
+    gap: 50px;
+    width: 100vw;
     min-height: 100vh;
 }
 

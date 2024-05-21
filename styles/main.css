@@ -69,13 +69,19 @@ body {
     background-color: #0143678a;
 }
 
+main > h1 {
+    font-size: 32px;
+    color: #003049;
+}
+
 .main-content{
-    padding: 4rem;
+    padding: 1.5rem;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 82vw;
-    min-height: 80vh;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    width: 100vw;
+    min-height: 100vh;
 }
 
 .crud-container{
